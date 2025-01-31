@@ -7,7 +7,7 @@ license = "BSD"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-aiohttp = {git = "https://github.com/aio-libs/aiohttp.git"}
+aiohttp = "^3.11.11"
 
 [tool.poetry.dev-dependencies]
 
