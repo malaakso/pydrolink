@@ -4,11 +4,11 @@ The API is a simple RPC style API with JSON payloads. API endpoints represent ac
 
 # Login
 
-HTTP POST to https://hydrolink.fi/api/v2/login with application/json payload `{"username": "myuser", "password": "mypass"}`. Response with application/json payload `{"token": "supersecrettoken"}`. Each API call expects this json object in the payload. Token seems to be valid for a very long time. When API returns 401 Unauthorized, it is necessary to login again.
+HTTP POST to https://hydrolink.fi/api/v2/login with application/json payload `{"username": "myuser", "password": "mypass"}`. Response with application/json payload `{"token": "supersecrettoken"}`. Each subsequent API call expects this token in the payload. Token seems to be valid for a very long time. When API returns 401 Unauthorized, it is necessary to login again.
 
 # Apartment information
 
-HTTP POST to https://hydrolink.fi/api/v2/getResidentCompanyData. Response
+HTTP POST to https://hydrolink.fi/api/v2/getResidentCompanyData. Response is text/plain payload
 
     {
     "name": "Company name",
@@ -56,11 +56,11 @@ HTTP POST to https://hydrolink.fi/api/v2/getResidentCompanyData. Response
     "billingPeriodMonths": null
     }
 
-Besides water meters with their IDs and "codes" (i.e. local identifiers), this includes also energy meters, temperature sensors and leakage meters if installed. Water prices are in currency per m^3.
+Besides water meters with their IDs and "codes" (i.e. local identifiers), this includes also energy meters, temperature sensors and leakage meters if installed. Water prices are in currency per m^3 and use comma as decimal separator.
 
 # Current readings
 
-HTTP POST to https://hydrolink.fi/api/v2/current. Response
+HTTP POST to https://hydrolink.fi/api/v2/current. Response is text/plain payload
 
     [
     {
@@ -93,7 +93,7 @@ where "warm": "t" indicates a meter for warm water and "warm": "f" for cold wate
 
 # Alarms
 
-HTTP POST to https://hydrolink.fi/api/v2/getAlarms. Response
+HTTP POST to https://hydrolink.fi/api/v2/getAlarms. Response is text/plain payload
 
     [
     {
@@ -138,7 +138,7 @@ shows various alarms for the corresponding meters.
 
 # Historical data
 
-HTTP POST https://hydrolink.fi/api/v2/getResidentMeterData. Response contains daily and monthly readings for each meter and is very large.
+HTTP POST https://hydrolink.fi/api/v2/getResidentMeterData. Response contains daily and monthly readings for each meter and is very large text/plain payload.
 
     {
     "username": "myuser",
